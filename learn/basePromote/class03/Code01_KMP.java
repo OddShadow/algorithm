@@ -43,12 +43,13 @@ public class Code01_KMP {
         // 人为规定0位置-1,1位置为0
         next[0] = -1;
         next[1] = 0;
-        int i = 2;    // next数组的位置
-        int cn = 0;
+        int i = 2; // next数组下标
+        int cn = 0; // 既是要比较的下标，也是现在使用的值
         while (i < next.length) {
-            if (ms[i - 1] == ms[cn]) { // i-1与cn位置比较，如果相等，next[i]改为cn+1
+            // 比较时都是 i-1 与 cn 位置进行比较
+            if (ms[i - 1] == ms[cn]) {
                 next[i++] = ++cn;
-            } else if (cn > 0) { // 当前跳到cn位置的字符，和i-1位置的字符匹配不上
+            } else if (cn > 0) {
                 cn = next[cn];
             } else {
                 next[i++] = 0;
@@ -58,8 +59,8 @@ public class Code01_KMP {
     }
     
     public static void main(String[] args) {
-        String str = "abbtabbzcabbtabbe";
-        String match = "cabbtabbe";
+        String str = "abbtabbzcabbtabbeabbtabbzcabbtabbe";
+        String match = "abcababcabcababc";
         System.out.println(getIndexOf(str, match));
     }
     
