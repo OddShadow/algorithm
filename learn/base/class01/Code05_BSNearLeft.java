@@ -16,6 +16,7 @@ public class Code05_BSNearLeft {
                 L = mid + 1;
             }
         }
+        index = arr[L] >= value ? L : index;
         return index;
     }
     
