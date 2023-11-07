@@ -38,18 +38,13 @@ public class Code02_Manacher {
         char[] charArr = manacherString(str);    // 1221 -> #1#2#2#1#
         int[] pArr = new int[charArr.length];    // 回文半径数组
         int C = -1;        // 记录中心
-        int R = -1;        // 回文右边界再往右一个位#，最右的有效区是R-1位置，注意这个边界是在遍历途中慢慢增加而不是str的长度
+        int R = -1;        // 回文右边界再往右一个位，最右的有效区是R-1位置，注意这个边界是在遍历途中慢慢增加而不是str的长度
         int max = Integer.MIN_VALUE;    // max记录扩出来的最大值
         for (int i = 0; i != charArr.length; i++) {    // 每一个位置求回文半径
-            // i至少的回文区域，先给pArr[i]
-            
-            // 至少不需要检验的区域
-            // 如果R在i外，则为1
-            // 否则则为其余两个瓶颈中，更小的那个则为半径
-            // 2*C-i为i“的位置
-            // 初始设置为1或
+            // 四种情况，不需要检验的区域
             pArr[i] = R > i ? Math.min(pArr[2 * C - i], R - i) : 1;
-            while (i + pArr[i] < charArr.length && i - pArr[i] > -1) {        // 当i+半径未超过长度且i-半径也未超过时
+            // 当i+半径未超过长度且i-半径也未超过时
+            while (i + pArr[i] < charArr.length && i - pArr[i] > -1) {
                 // 如果二者的值相等，则半径++继续比较
                 if (charArr[i + pArr[i]] == charArr[i - pArr[i]])
                     pArr[i]++;
@@ -64,11 +59,12 @@ public class Code02_Manacher {
             }
             max = Math.max(max, pArr[i]);
         }
-        /*for (int p:pArr) {
-            System.out.print(p+" ");
+        // 打印回文半径数组看一下
+        for (int p : pArr) {
+            System.out.print(p + " ");
         }
-        System.out.println();*/
-        return max - 1;
+        System.out.println();
+        return max - 1; // 扩充串和实际串的关系
     }
     
     // 填充#
