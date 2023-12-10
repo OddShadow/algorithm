@@ -1,12 +1,16 @@
 package learn.base.class04;
 
-//打印链表的共同部分，并保持相对顺序
+/*
+    打印有序链表的共同部分，并保持相对顺序
+    Linked List: 2 3 5 6
+    Linked List: 1 2 5 7 8
+    Common Part: 2 5
+ */
 public class Code03_PrintCommonPart {
     
     public static class Node {
         public int value;
         public Node next;
-        
         public Node(int data) {
             this.value = data;
         }
@@ -15,13 +19,10 @@ public class Code03_PrintCommonPart {
     public static void printCommonPart(Node head1, Node head2) {
         System.out.print("Common Part: ");
         while (head1 != null && head2 != null) {
-            //如果head1<head2的值，则head1读取后续节点
             if (head1.value < head2.value) {
                 head1 = head1.next;
-                //如果head1>head2的值，则head2读取后续节点
             } else if (head1.value > head2.value) {
                 head2 = head2.next;
-                //否则打印head1的值并且两者都读取后续节点
             } else {
                 System.out.print(head1.value + " ");
                 head1 = head1.next;
