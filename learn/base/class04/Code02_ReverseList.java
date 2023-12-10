@@ -1,45 +1,33 @@
 package learn.base.class04;
 
-//反转链表
 public class Code02_ReverseList {
-    
-    public static class Node {
-        public int value;
-        public Node next;
-        
-        public Node(int data) {
-            this.value = data;
-        }
-    }
-    
-    //反转单链表
+
+    /*
+        反转单链表，时间复杂度 O(N)，空间复杂度 O(1)
+     */
     public static Node reverseList(Node head) {
         Node pre = null;
         Node next = null;
         while (head != null) {
-            //next节点置为head节点的next节点
             next = head.next;
-            //head节点的next节点置为pre(null)
             head.next = pre;
-            //将pre节点设置为head节点
             pre = head;
-            //将head节点设置为next节点
             head = next;
         }
         return pre;
     }
-    
-    public static class DoubleNode {
+
+    public static class Node {
         public int value;
-        public DoubleNode last;
-        public DoubleNode next;
-        
-        public DoubleNode(int data) {
+        public Node next;
+        public Node(int data) {
             this.value = data;
         }
     }
-    
-    //反转双链表
+
+    /*
+        反转双链表，时间复杂度 O(N)，空间复杂度 O(1)
+    */
     public static DoubleNode reverseList(DoubleNode head) {
         DoubleNode pre = null;
         DoubleNode next = null;
@@ -52,8 +40,17 @@ public class Code02_ReverseList {
         }
         return pre;
     }
+
+    public static class DoubleNode {
+        public int value;
+        public DoubleNode last;
+        public DoubleNode next;
+        public DoubleNode(int data) {
+            this.value = data;
+        }
+    }
     
-    //打印链表
+    // 打印链表
     public static void printLinkedList(Node head) {
         System.out.print("Linked List: ");
         while (head != null) {
@@ -63,7 +60,7 @@ public class Code02_ReverseList {
         System.out.println();
     }
     
-    //打印双链表
+    // 打印双链表
     public static void printDoubleLinkedList(DoubleNode head) {
         System.out.print("Double Linked List: ");
         DoubleNode end = null;
@@ -97,7 +94,6 @@ public class Code02_ReverseList {
         head2.next.next.next.last = head2.next.next;
         printDoubleLinkedList(head2);
         printDoubleLinkedList(reverseList(head2));
-        
     }
     
 }
